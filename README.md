@@ -64,7 +64,7 @@ The downward gradient is the method for prediction training.
 
 ### FIRST PROGRAM INFORMATION
 
-
+Just a linear function.
 
 ### SECOND PROGRAM INFORMATION
 
