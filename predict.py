@@ -1,5 +1,3 @@
-import math
-import csv
 import os
 
 def main():
@@ -14,7 +12,7 @@ def retrieveTheta():
         exit(1)
     with open('./theta.predict', 'r') as file:
         theta = file.read().split('\n')
-        return float(theta[0]), float(theta[1])
+    return float(theta[0]), float(theta[1])
 
 def estimatePrice(theta, mileage):
     res = theta[0] + (theta[1] * float(mileage))
