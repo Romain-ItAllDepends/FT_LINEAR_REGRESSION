@@ -35,7 +35,6 @@ Before running the training program, theta0 and theta1 will be set to 0.
 ## SECOND PROGRAM
 
 Regression linear.
-Gradient descent algorithm. (Pour estimatePrice)
 
 The second program will be used to train your model. It will read your dataset file
 and perform a linear regression on the data.
@@ -62,13 +61,15 @@ m is the number of line in data file.
 θ = 0 (basic stat)
 The downward gradient is the method for prediction training.
 
+Gradient descent algorithm is the entire algorithm.
+
 ### FIRST PROGRAM INFORMATION
 
 Just a linear function.
 
 ### SECOND PROGRAM INFORMATION
 
-Avec le symbole ∑, on fait varier i du nombre en bas jusqu’au nombre en haut, et on additionne les valeurs obtenues à chaque étape.
+Using the symbol ∑, we vary i from the bottom number to the top number, and we add the values ​​obtained at each step.
 
 Exemple:
 
