@@ -7,7 +7,7 @@ maxMileage, maxPrice = 0, 0
 def main():
     lines = retrieveData()
     normedData = normalize(lines)
-    theta = train(normedData)
+    theta = train(normedData[0], normedData[1])
     saveTheta(theta)
 
 def retrieveData():
@@ -51,18 +51,20 @@ def normalize(list):
     global minMileage, maxMileage, minPrice, maxPrice
     minMileage, minPrice = minValues(list)
     maxMileage, maxPrice = maxValues(list)
-    print(minPrice, maxPrice, minMileage, maxMileage)
+
     normedMileage = [(x[0] - minMileage) / (maxMileage - minMileage) for x in list]
     normedPrice = [(x[1] - minPrice) / (maxPrice - minPrice) for x in list]
-    print("Normed Mileage: ", normedMileage)
-    print("\nNormed Price: ", normedPrice)
     return normedMileage, normedPrice
 
-def train(lines):
-    tmpTheta0, tmpTheta1 = getTheta()
+def train(mileage, price):
+    tmpTheta0, tmpTheta1 = 0.0, 0.0
+    length = len(mileage)
+
     for i in range (0, 10000):
-        tmpTheta0 -= 0.0000001 * 1 / len(lines) * sum([estimatePrice(float(line[0]), tmpTheta0, tmpTheta1)- float(line[1]) for line in lines])
-        tmpTheta1 -= 0.0000001 * 1 / len(lines) * sum([(estimatePrice(float(line[0]), tmpTheta0, tmpTheta1) - float(line[1])) * float(line[0]) for line in lines])
+        correction0 = 0.00001 * 1 / length * sum([estimatePrice(m, tmpTheta0, tmpTheta1)- p for m, p in zip(mileage, price)])
+        correction1 = 0.00001 * 1 / length * sum([(estimatePrice(m, tmpTheta0, tmpTheta1) - p) * m for m, p in zip(mileage, price)])
+        tmpTheta0 -= correction0
+        tmpTheta1 -= correction1
     return tmpTheta0, tmpTheta1
 
 def estimatePrice(mileage, theta0, theta1):
@@ -75,14 +77,5 @@ def parseHeader(line):
         if c.isalpha():
             return False
     return True
-
-def getTheta():
-    if not os.path.exists('./theta.predict'):
-        return 0.0, 0.0
-    if not os.access('./theta.predict', os.R_OK):
-        exit(1)
-    with open('./theta.predict', 'r') as file:
-        theta = file.read().split('\n')
-    return float(theta[0]), float(theta[1])
 
 main()
