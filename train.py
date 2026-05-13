@@ -1,14 +1,23 @@
+import sys
 import csv
 import os
 
 minMileage, minPrice = 0, 0
 maxMileage, maxPrice = 0, 0
+adaptiveLearningRate = False
 
 def main():
+    parseParameter()
     lines = retrieveData()
     normedData = normalize(lines)
     theta = train(normedData[0], normedData[1])
+    theta = denormalize(theta)
     saveTheta(theta)
+
+def parseParameter():
+    global adaptiveLearningRate
+    if len(sys.argv) > 1 and sys.argv[1] == '-lr':
+        adaptiveLearningRate = True
 
 def retrieveData():
     if not os.path.exists('./data.csv'):
@@ -54,15 +63,27 @@ def normalize(list):
 
     normedMileage = [(x[0] - minMileage) / (maxMileage - minMileage) for x in list]
     normedPrice = [(x[1] - minPrice) / (maxPrice - minPrice) for x in list]
+
     return normedMileage, normedPrice
+
+def denormalize(theta):
+    global minMileage, maxMileage, minPrice, maxPrice
+
+    theta1_real = theta[1] * (maxPrice - minPrice) / (maxMileage - minMileage)
+    theta0_real = theta[0] * (maxPrice - minPrice) + minPrice - theta1_real * minMileage
+
+    return theta0_real, theta1_real
 
 def train(mileage, price):
     tmpTheta0, tmpTheta1 = 0.0, 0.0
     length = len(mileage)
+    lr = 0.1
 
-    for i in range (0, 10000):
-        correction0 = 0.00001 * 1 / length * sum([estimatePrice(m, tmpTheta0, tmpTheta1)- p for m, p in zip(mileage, price)])
-        correction1 = 0.00001 * 1 / length * sum([(estimatePrice(m, tmpTheta0, tmpTheta1) - p) * m for m, p in zip(mileage, price)])
+    for i in range (0, 100000):
+        if adaptiveLearningRate: # Need global
+            lr = 0.1 / (1 + 0.0001 * i)
+        correction0 = lr * 1 / length * sum([estimatePrice(m, tmpTheta0, tmpTheta1) - p for m, p in zip(mileage, price)])
+        correction1 = lr * 1 / length * sum([(estimatePrice(m, tmpTheta0, tmpTheta1) - p) * m for m, p in zip(mileage, price)])
         tmpTheta0 -= correction0
         tmpTheta1 -= correction1
     return tmpTheta0, tmpTheta1

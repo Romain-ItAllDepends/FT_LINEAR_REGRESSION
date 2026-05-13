@@ -1,9 +1,25 @@
 import os
+import sys
+
+restart = False
 
 def main():
+    parseParameter()
     theta = retrieveTheta()
     mileage = input("What is the vehicle's mileage?\n")
     estimatePrice(theta, mileage)
+    if restart:
+        main()
+    else:
+        exit(0)
+    quit = input("Would you like to quit? (y/n)\n")
+    if quit == 'y':
+        exit(0)
+    
+def parseParameter():
+    global restart
+    if len(sys.argv) > 1 and sys.argv[1] == '-r':
+        restart = True
 
 def retrieveTheta():
     if not os.path.exists('./theta.predict'):

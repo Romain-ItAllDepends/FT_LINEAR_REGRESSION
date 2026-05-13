@@ -76,3 +76,27 @@ Exemple:
 3
 ∑i                 ->     0 + 1 + 2 + 3 = 6
 i=0
+
+normalize:
+
+Set each value between 0 and 1 based on min and max value.
+
+denormalize:
+
+Get the real theta.
+
+Mean squared error:
+
+The MSE is a measure of the quality of an estimator. As it is derived from the square of Euclidean distance, it is always a positive value that decreases as the error approaches zero.
+
+Need to reach 0 or close to.
+
+### PARAMETERS
+
+predict.py
+
+-r ====> Restart until you send 'y' when you will quit.
+
+train.py
+
+-lr ====> Set adaptative learning rate (more precise)
