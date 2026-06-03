@@ -7,7 +7,8 @@ def main():
     parseParameter()
     theta = retrieveTheta()
     mileage = input("What is the vehicle's mileage?\n")
-    estimatePrice(theta, mileage)
+    res = estimatePrice(theta, mileage)
+    savePredictions(res)
     if restart:
         main()
     else:
@@ -15,6 +16,7 @@ def main():
     quit = input("Would you like to quit? (y/n)\n")
     if quit == 'y':
         exit(0)
+    
     
 def parseParameter():
     global restart
@@ -33,5 +35,11 @@ def retrieveTheta():
 def estimatePrice(theta, mileage):
     res = theta[0] + (theta[1] * float(mileage))
     print(res)
+    return res
+
+def savePredictions(res):
+    with open('./result.predict', 'a') as file:
+        file.write(str(res))
+        file.write('\n')
 
 main()
