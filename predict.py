@@ -6,9 +6,9 @@ restart = False
 def main():
     parseParameter()
     theta = retrieveTheta()
-    mileage = input("What is the vehicle's mileage?\n")
+    mileage = input("What is the vehicle's mileage?\n") # Input str segfault
     res = estimatePrice(theta, mileage)
-    savePredictions(res)
+    savePredictions(res, mileage)
     if restart:
         main()
     else:
@@ -33,13 +33,12 @@ def retrieveTheta():
     return float(theta[0]), float(theta[1])
 
 def estimatePrice(theta, mileage):
-    res = theta[0] + (theta[1] * float(mileage))
+    res = int(theta[0] + (theta[1] * float(mileage)))
     print(res)
     return res
 
-def savePredictions(res):
+def savePredictions(res, mileage):
     with open('./result.predict', 'a') as file:
-        file.write(str(res))
-        file.write('\n')
+        file.write(f"\n{mileage},{res}")
 
 main()

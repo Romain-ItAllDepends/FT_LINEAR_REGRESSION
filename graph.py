@@ -1,51 +1,69 @@
+import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 
 def main():
-    data = retrieveData()
-    prediction = retrievePrediction()
+	data = retrieveData()
+	prediction = retrievePrediction()
 
-    fig, ax = plt.subplots()             # Create a figure containing a single Axes.
-    ax.set_title("Prediction graphic")
-    ax.plot(np.arange(len(data)), data, 'd', label='data')
-    ax.plot(np.arange(len(prediction)), prediction, 'd', label='prediction')
-    ax.set_ylabel("Mileage")
-    ax.set_xlabel("Price")
-    ax.legend()
-    plt.show()
+	x = [price for price, mileage in data]
+	y = [mileage for price, mileage in data]
+	w = [price for price, mileage in prediction]
+	z = [mileage for price, mileage in prediction]
+
+	plt.title("Predictions graphic")
+
+	plt.scatter(x, y, label="Data")
+	plt.scatter(w, z, marker='^', label="Prediction")
+
+	ax = plt.gca() # Disable scientific notation for coordinates
+	ax.xaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
+	ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:.0f}'))
+
+	plt.ylabel("Price")
+	plt.xlabel("Mileage")
+	plt.xlim(0, max(x))
+	plt.ylim(0, max(y))
+
+	plt.legend()
+	plt.grid()
+	plt.show()
 
 def retrievePrediction():
-    if not os.path.exists('./result.predict'):
-        return 0.0, 0.0
-    if not os.access('./result.predict', os.R_OK):
-        exit(1)
-    with open('./result.predict', 'r') as file:
-        res = file.read().split('\n')
-    return res
+	if not os.path.exists('./result.predict'):
+		exit(1)
+	if not os.access('./result.predict', os.R_OK):
+		exit(1)
+	with open('./result.predict', 'r') as file:
+		lines = file.read().strip().split('\n')
+		file = parseFile(lines)
+		if not file:
+			print("The prediction file is empty or contains alphanumeric characters!")
+			exit(0)
+	return file
 
 def retrieveData():
-    if not os.path.exists('./data.csv'):
-        exit(1)
-    if not os.access('./data.csv', os.R_OK):
-        exit(1)
-    with open('./data.csv', 'r') as file:
-        lines = file.read().split('\n')
-        file = parseFile(lines)
-        print(file)
-        if not file:
-            print("The data file is empty or contains alphanumeric characters!")
-            exit(0)
-    return file
+	if not os.path.exists('./data.csv'):
+		exit(1)
+	if not os.access('./data.csv', os.R_OK):
+		exit(1)
+	with open('./data.csv', 'r') as file:
+		lines = file.read().strip().split('\n')
+		file = parseFile(lines)
+		if not file:
+			print("The data file is empty or contains alphanumeric characters!")
+			exit(0)
+	return file
 
 def parseFile(file):
-    fileParsed = []
-    for line in file:
-        try:
-            x, y = line.split(',')
-            fileParsed.append((int(x), int(y)))
-        except:
-            continue
-    return fileParsed
+	fileParsed = []
+	for line in file:
+		try:
+			x, y = line.split(',')
+			fileParsed.append((int(x), int(y)))
+		except:
+			continue
+	return fileParsed
 
 main()
