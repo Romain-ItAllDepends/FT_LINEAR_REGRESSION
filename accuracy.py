@@ -1,4 +1,3 @@
-import numpy as np
 import os
 
 def main():
@@ -7,21 +6,21 @@ def main():
 	evaluate(data, prediction)
 
 def evaluate(data, prediction):
-    dataDict = {m: p for m, p in data} # Creation of a dictionary (like map in c++)
+	dataDict = {m: p for m, p in data} # Creation of a dictionary (like map in c++)
 
-    totalError = 0
-    count = 0
+	totalError = 0
+	count = 0
 
-    for m, pricePred in prediction:
-        if m in dataDict:
-            priceData = dataDict[m]
+	for m, pricePred in prediction:
+		if m in dataDict:
+			priceData = dataDict[m]
 
-            totalError += abs(pricePred - priceData) / priceData
-            count += 1
+			totalError += abs(pricePred - priceData) / priceData
+			count += 1
 
-    accuracy = (1 - totalError / count) * 100
+	accuracy = (1 - totalError / count) * 100
 
-    print("Accuracy:", accuracy, "%")
+	print("Accuracy:", accuracy, "%")
 
 def retrievePrediction():
 	if not os.path.exists('./result.predict'):

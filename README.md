@@ -15,8 +15,9 @@ data : it will be very helpful for debugging.
 
 ## SELECTED LIBRARIES
 
+- matplotlib (ticker, pyplot)
 - math
-- csv
+- sys
 - os
 
 ## FIRST PROGRAM
@@ -34,7 +35,7 @@ Before running the training program, theta0 and theta1 will be set to 0.
 
 ## SECOND PROGRAM
 
-Regression linear.
+Linear regression.
 
 The second program will be used to train your model. It will read your dataset file
 and perform a linear regression on the data.
@@ -42,9 +43,9 @@ Once the linear regression has completed, you will save the variables theta0 and
 theta1 for use in the first program.
 You will be using the following formulas :
 
-tmpθ0 = learningRate ∗ 1/m m−1∑i=0(estimatePrice(mileage[i]) − price[i])
+tmpθ0 = learningRate ∗ 1/m * m−1∑i=0(estimatePrice(mileage[i]) − price[i])
 
-tmpθ1 = learningRate ∗ 1/m m−1∑i=0(estimatePrice(mileage[i]) − price[i]) ∗ mileage[i])
+tmpθ1 = learningRate ∗ 1/m * m−1∑i=0(estimatePrice(mileage[i]) − price[i]) ∗ mileage[i])
 
 I let you guess what m is :)
 Note that the estimatePrice is the same as in our first program, but here it uses
@@ -83,13 +84,13 @@ Set each value between 0 and 1 based on min and max value.
 
 denormalize:
 
-Get the real theta.
+Denormalization is applied to return values to their original scale after training on normalized data.
 
 Mean squared error:
 
-The MSE is a measure of the quality of an estimator. As it is derived from the square of Euclidean distance, it is always a positive value that decreases as the error approaches zero.
+The MSE is a measure of the quality of an estimator and used to optimize the model. As it is derived from the square of Euclidean distance, it is always a positive value that decreases as the error approaches zero. (This is the calculation given in the problem statement for the training program)
 
-Need to reach 0 or close to.
+The goal is to minimize the error (MSE), ideally as close to 0 as possible.
 
 ### PARAMETERS
 
@@ -99,4 +100,29 @@ predict.py
 
 train.py
 
--lr ====> Set adaptative learning rate (more precise)
+-lr ====> Set adaptive learning rate (more precise)
+
+graph.py
+
+accuracy.py
+
+It only works when using the same data as that used for training.
+
+### PROGRAM OBJECTIVE
+
+Predicting the price of a vehicle from its mileage using a linear regression model trained on a dataset containing mileage/price pairs.
+
+### EXPLAINATION OF THE ALGORITHM
+
+Train:
+
+The data is first normalized to put them on a common scale: the minimum is reduced to 0, the maximum to 1, and the other values ​​are recalculated proportionally between these two limits.
+
+Next, as requested in the subject, we use the Mean Squared Error (MSE), which allows us to measure the average error between the predicted values ​​and the actual values ​​of the model.
+
+Since we have normalized the data, we need to denormalize our thetas to make them usable. To do this, we apply the inverse of the normalization transformation.
+
+Predict:
+
+To make a prediction, it is sufficient to use the linear function defined in the subject, applying the parameters θ obtained during the training phase.
+

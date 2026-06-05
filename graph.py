@@ -1,6 +1,5 @@
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
-import numpy as np
 import os
 
 def main():
