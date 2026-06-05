@@ -43,9 +43,7 @@ Once the linear regression has completed, you will save the variables theta0 and
 theta1 for use in the first program.
 You will be using the following formulas :
 
-tmpθ0 = learningRate ∗ 1/m * m−1∑i=0(estimatePrice(mileage[i]) − price[i])
-
-tmpθ1 = learningRate ∗ 1/m * m−1∑i=0(estimatePrice(mileage[i]) − price[i]) ∗ mileage[i])
+<img width="718" height="132" alt="image" src="https://github.com/user-attachments/assets/0e775ddd-d9a1-4d56-9618-981f762eb8dc" />
 
 I let you guess what m is :)
 Note that the estimatePrice is the same as in our first program, but here it uses
