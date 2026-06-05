@@ -72,9 +72,7 @@ Using the symbol ∑, we vary i from the bottom number to the top number, and we
 
 Exemple:
 
-3
-∑i                 ->     0 + 1 + 2 + 3 = 6
-i=0
+<img width="1097" height="386" alt="image" src="https://github.com/user-attachments/assets/34cb89b4-581a-4e82-b2c9-fb7db16976e4" />
 
 normalize:
 
