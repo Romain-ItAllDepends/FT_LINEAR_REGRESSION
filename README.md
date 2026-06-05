@@ -1,8 +1,8 @@
-# FT_LINEAR_REGRESSION
+# 🚗 FT_LINEAR_REGRESSION 🚗
 
 This project will be your first steps into AI and Machine Learning. You're going to start with a simple, basic machine learning algorithm. You will have to create a program that predicts the price of a car by using a linear function train with a gradient descent algorithm. 
 
-## LANGUAGE
+## 🧠 LANGUAGE 🧠
 
 In this project, you are free to use whatever language you want.
 You are also free to use any libraries you want as long as they do not do all the work
@@ -13,14 +13,14 @@ data : it will be very helpful for debugging.
 
 - Python
 
-## SELECTED LIBRARIES
+## 📚 SELECTED LIBRARIES 📚
 
 - matplotlib (ticker, pyplot)
 - math
 - sys
 - os
 
-## FIRST PROGRAM
+## ⚙️ FIRST PROGRAM ⚙️
 
 Linear function.
 
@@ -33,7 +33,7 @@ estimatePrice(mileage) = θ0 + (θ1 ∗ mileage)
 
 Before running the training program, theta0 and theta1 will be set to 0.
 
-## SECOND PROGRAM
+## ⚙️ SECOND PROGRAM ⚙️
 
 Linear regression.
 
@@ -54,7 +54,7 @@ learningRate is a manual value.
 
 m is the number of line in data file.
 
-### GLOBAL INFORMATION
+### ℹ️ GLOBAL INFORMATION ℹ️
 
 θ (theta) is an unknown number.
 θ = 0 (basic stat)
@@ -62,11 +62,11 @@ The downward gradient is the method for prediction training.
 
 Gradient descent algorithm is the entire algorithm.
 
-### FIRST PROGRAM INFORMATION
+### ℹ️ FIRST PROGRAM INFORMATION ℹ️
 
 Just a linear function.
 
-### SECOND PROGRAM INFORMATION
+### ℹ️ SECOND PROGRAM INFORMATION ℹ️
 
 Using the symbol ∑, we vary i from the bottom number to the top number, and we add the values ​​obtained at each step.
 
@@ -88,7 +88,7 @@ The MSE is a measure of the quality of an estimator and used to optimize the mod
 
 The goal is to minimize the error (MSE), ideally as close to 0 as possible.
 
-### PARAMETERS
+### ⚙️ PARAMETERS ⚙️
 
 predict.py
 
@@ -104,11 +104,11 @@ accuracy.py
 
 It only works when using the same data as that used for training.
 
-### PROGRAM OBJECTIVE
+### 🎯 PROGRAM OBJECTIVE 🎯
 
 Predicting the price of a vehicle from its mileage using a linear regression model trained on a dataset containing mileage/price pairs.
 
-### EXPLAINATION OF THE ALGORITHM
+### 😖 EXPLAINATION OF THE ALGORITHM 😖
 
 Train:
 
