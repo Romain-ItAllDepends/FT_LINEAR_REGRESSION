@@ -1,6 +1,7 @@
 import os
 
 def main():
+	print("Compare your training data with the same data, but during prediction generation. (Use test.sh to easily generate predictions.)")
 	data = retrieveData()
 	prediction = retrievePrediction()
 	evaluate(data, prediction)
@@ -17,7 +18,9 @@ def evaluate(data, prediction):
 
 			totalError += abs(pricePred - priceData) / priceData
 			count += 1
-
+	if count == 0:
+		print("No data to compare!")
+		return 0
 	accuracy = (1 - totalError / count) * 100
 
 	print("Accuracy:", accuracy, "%")
