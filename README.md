@@ -122,3 +122,9 @@ Predict:
 
 To make a prediction, it is sufficient to use the linear function defined in the subject, applying the parameters θ obtained during the training phase.
 
+### ℹ️ Overfitting information ℹ️
+
+Overfitting occurs when a model learns the training data too closely, including its noise and specific patterns, causing it to perform well on the training set but poorly on unseen data. Evaluating the model only on the training data can hide this problem, as the measured accuracy may be misleadingly high.
+
+In our case, overfitting is unlikely to be a problem because we are using simple linear regression. Since the model can only fit a straight line, it has limited flexibility and cannot easily memorize the training data.
+
